@@ -1,6 +1,8 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -9,19 +11,22 @@ class LoginPage extends StatelessWidget {
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         title: Center(
             child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.electric_bike),
-            Text("\t\tMechOnWheels"),
+            Text("    MechOnWheels"),
           ],
         )),
-        backgroundColor: Color(0xFF0d011a),
+        // backgroundColor: Color(0xFF0d011a),
+        backgroundColor: Colors.black.withBlue(20),
       ),
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color(0xFF07021c),
+      // backgroundColor: Color(0xFF07021c),
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -32,25 +37,40 @@ class LoginPage extends StatelessWidget {
                     // color: Colors.red
                     ),
                 width: double.infinity,
-                margin: EdgeInsets.only(top: 80, left: 30),
+                margin: EdgeInsets.only(top: 50, left: 30),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Let's sign you in.",
-                      style: TextStyle(fontSize: 40),
+                      style: GoogleFonts.ubuntu(
+                        textStyle: TextStyle(fontSize: 40)
+                      ),
                     ),
                     Text(
                       "Welcome rider.",
-                      style: TextStyle(fontSize: 30),
+                      style:GoogleFonts.ubuntu(
+                        textStyle: TextStyle(fontSize: 30)
+                      )
+                    ),
+                    
+                    Container(
+                      // alignment: Alignment.center,
+                      child: Hero(
+                        tag: 'bikeLogo',
+                        child: Image.asset(
+                          'assets/path1919.png',
+                          height: 200,
+                        ),
+                      ),
                     )
                   ],
                 ),
               ),
-              SizedBox(
-                height: _height * .08,
-              ),
-              loginSection(_height, _width,context),
+              // SizedBox(
+              //   height: _height * .08,
+              // ),
+              loginSection(_height, _width, context),
               SizedBox(
                 height: 50,
               ),
@@ -72,7 +92,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget loginSection(height, width,context) {
+  Widget loginSection(height, width, context) {
     final formKey = GlobalKey();
     String email, password;
 
@@ -90,7 +110,7 @@ class LoginPage extends StatelessWidget {
               spreadRadius: .5,
             ),
             BoxShadow(
-              color: Colors.blue.shade300,
+              color: Colors.lightBlue,
               blurRadius: 10,
               spreadRadius: .5,
             )
@@ -129,10 +149,13 @@ class LoginPage extends StatelessWidget {
                       onChanged: (val) {
                         email = val;
                       },
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                           icon: Icon(Icons.email),
                           labelText: "Email",
                           hintText: "Enter your email",
+                          // hintStyle: TextStyle(color: Colors.grey.shade400),
+                          // labelStyle: TextStyle(color: Colors.grey.shade400),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(color: Colors.blueAccent)),
@@ -147,11 +170,14 @@ class LoginPage extends StatelessWidget {
                       onChanged: (val) {
                         password = val;
                       },
+                      style: TextStyle(color: Colors.grey.shade200),
                       obscureText: true,
                       decoration: InputDecoration(
                           icon: Icon(Icons.vpn_key),
                           labelText: "Password",
                           hintText: "Enter your password",
+                          // hintStyle: TextStyle(color: Colors.grey.shade400),
+                          // labelStyle: TextStyle(color: Colors.grey.shade400),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(color: Colors.blueAccent)),
@@ -178,7 +204,7 @@ class LoginPage extends StatelessWidget {
                   )),
               onPressed: () {
                 print("email: ${email}\npassword: ${password}");
-                Navigator.pushNamed(context, '/');
+                Navigator.pushReplacementNamed(context, '/');
               },
               icon: Icon(Icons.login),
               label: Text(

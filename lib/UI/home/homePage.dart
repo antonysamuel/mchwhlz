@@ -35,24 +35,44 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Container(
-              margin: EdgeInsets.only(top: 90, left: 20),
+              margin: EdgeInsets.only(top: 10, left: 20),
               //hello text
               child: Container(
                 width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Hello",
-                      style: TextStyle(fontSize: 30, letterSpacing: 3),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hello",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 30,
+                              letterSpacing: 3),
+                        ),
+                        Text("Abin",
+                            style: GoogleFonts.permanentMarker(
+                              textStyle: TextStyle(
+                                  color: Colors.black,
+
+                                  // fontWeight: FontWeight.bold,
+                                  fontSize: 35,
+                                  letterSpacing: 5),
+                            ))
+                      ],
                     ),
-                    Text("Abin",
-                        style: GoogleFonts.permanentMarker(
-                          textStyle: TextStyle(
-                              // fontWeight: FontWeight.bold,
-                              fontSize: 35,
-                              letterSpacing: 5),
-                        ))
+                    Container(
+                      // alignment: Alignment.center,
+                      child: Hero(
+                        tag: 'bikeLogo',
+                        child: Image.asset(
+                          'assets/logo2.png',
+                          height: 200,
+                        ),
+                      ),
+                    )
                   ],
                 ),
               )),
@@ -165,13 +185,13 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
               children: [
                 bottomCard("Road Side\nAssistance",
-                    Colors.green.shade300.withOpacity(.6)),
+                    Colors.green.shade300.withOpacity(.9)),
                 bottomCard(
-                    "General Service", Colors.pink.shade300.withOpacity(.6)),
+                    "General Service", Colors.pink.shade300.withOpacity(.9)),
                 bottomCard("Find Nearby\nWorkshops",
-                    Colors.blue.shade300.withOpacity(.6)),
+                    Colors.blue.shade300.withOpacity(.9)),
                 bottomCard("Nearby Fuel\nStations",
-                    Colors.grey.shade300.withOpacity(.6)),
+                    Colors.grey.shade900.withOpacity(.9)),
               ],
             ),
           )
